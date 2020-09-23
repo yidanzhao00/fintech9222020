@@ -1,39 +1,97 @@
-# Integrating a frontend with your CryptoRight contract
+# Creating a Landing Page Website with Github Pages
 
-In this activity, you will take a pre-built frontend that was designed against the same "EIP-333" specification you built your contract against, and combine it with your `CryptoRight` contract to create a full-fledged dApp!
+In this activity, you will leverage the power of Github Pages to convert a `README.md` into a landing page for your dApp. You can use this to point to the frontend code and to explain the context of your application to users, developers, future employers, or any audience you choose!
 
 ## Instructions
 
-* Create a new directory called `cryptoright-frontend` and `cd` into it.
+* Create a fresh directory in your workspace called `cryptoright`:
 
-* Copy the [dapp.js](Resources/cryptoright-frontend/dapp.js) file into this directory.
-
-* Copy the [index.html](Resources/cryptoright-frontend/index.html) file into this directory.
-
-* Create a new empty file called `CryptoRight.json`. This will contain your contract's ABI.
-
-* Run the following command to serve the directory via HTTP:
-
-  ```python
-  python -m http.server 8000
+  ```bash
+  mkdir cryptoright
+  cd cryptoright
   ```
 
-* Navigate to Remix, and copy your deployed contract's address. You can deploy a fresh contract in this step to generate a new contract address to use.
+* Move the frontend code from the previous folder you were working in that contained the `dapp.js`, `index.html`, and `CryptoRight.json` into a subfolder called `frontend`.
 
-* Open the `dapp.js` file, and modify the `contract_address` variable at the top of the file to match your deployed contract address. This is the only thing you need to change in this file, no need to worry about any other JavaScript.
+* Create a `README.md` inside the top-level `cryptoright` folder.
 
-* Back in Remix, navigate to the `Compile` tab and copy the contract's ABI. Paste this into `CryptoRight.json`.
+  Your directory tree should look something like:
 
-  * This dApp expects the `CryptoRight.json` ABI file to be in the same directory as `index.html` and `dapp.js`. Ensure that the file is named properly and that it contains only the contract's ABI.
+  ![Github Pages file tree](Images/github-pages-tree.png)
 
-* Navigate to [localhost:8000](localhost:8000) in your web browser.
+  You can model the structure from the [Resources/cryporight](Resources/cryptoright/README.md) folder.
 
-* Fill in the form accordingly, creating some copyrights. You will need your API keys for Pinata located at your [Pinata Account Page](https://pinata.cloud/account).
+* Within this `README.md` file, add some information explaining the application.
+  You **must** include a link to the dApp's `frontend` directory by linking to `frontend/index.html` at least once, otherwise, the point of the landing page is lost!
 
-  ![CryptoRight Submit](Images/cryptoright-submit.gif)
+  The syntax for a link in Markdown is `[Link Text Here](https://url_here)`. You can directly link to the `frontend/index.html` file with something like
+
+  ```markdown
+  [Frontend Code Link Text](frontend/index.html)
+  ```
+
+  For example:
+
+  ```markdown
+  # CryptoRight Blockchain Copyright System
+
+  ## Summary
+
+  This application is a copyright management system built on the Ethereum blockchain.
+
+  ### Demo App
+
+  Click [here](frontend/index.html) to launch the CryptoRight application.
+  ```
+
+* Take the time to explain how the application was built. Explain things like how the contracts work, what the purpose of the application is, and how to use it.
+
+* You can include codeblocks and even explain your raw code if you would like to present this to a future employer. Get creative!
+
+* Use this [Markdown Syntax Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for quick reference on how to style various aspects of your text.
+
+* Once you've got a good summary going, create a new Github repository by navigating to [Github](https://github.com), clicking the `+` at the top right, and selecting `New Repository`:
+
+![New Github Repo](Images/github-new-repo.png)
+
+* Give it a title and short description. Set it to public, and do not initialize with a `README`, since you have one already. Create the repository.
+
+* Run the first set of commands that Github provides for uploading existing code to the repo, minus the first line of code that `echo`s to the `README.md` file (since there is already content in there):
+
+![Github Upload CLI](Images/github-repo-cli.png)
+
+* Once you run this set of commands, you will need to upload the rest of the frontend code, since this set only uploads the `README.md`:
+
+  ```bash
+  git add -A
+  git commit -m "add frontend code"
+  git push
+  ```
+
+  After running this, all of the code should be uploaded to the repository.
+
+![Github Upload Complete](Images/github-upload.png)
+
+* Navigate to the repo settings on Github by clicking the `Settings` tab, and scroll down to the `Github Pages` section, and set the `Source` to `master`:
+
+![Github Pages Setup](Images/github-pages-setup.gif)
+
+* Click the theme chooser, pick a theme, then navigate to the URL that Github Pages provides. You should see your website generated! **(This may take a few moments to reflect and may need a refresh.)**
+
+* Once on the landing page, check our your beautiful work, then on the link that you generated to take you to your dApp. Ensure MetaMask is pointed at the same network that you've deployed the contract to. The dApp should request permissions to connect, and once on the same network the contract is deployed to, the contract data should populate.
+
+![Github Pages Theme](Images/github-pages-theme.gif)
+
+* Congratulate yourself on building your first portfolio-ready landing page!
 
 ## Challenge
 
-* If time remains, try to create some open source materials!
+* If time remains, try to deploy your contract to a live testnet like Kovan or Ropsten. You will need to update the `contract_address` variable in the `dapp.js` frontend to reflect the new contract address. If using the same deployment account, it might end up even being the same contract address, due to the deterministic nature of Ethereum.
 
-* Switch networks to Kovan or Ropsten, and deploy the contract. Then, update the contract's address in `dapp.js` and try to interact with the dApp when deployed on a testnet.
+* This landing page faces the world. Try to make this site as compelling as possible by capturing the exciting elements of your hard work!
+
+## Hints
+
+* In case you need some help with Markdown, use this [Markdown Syntax Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for quick reference on how to style various aspects of your text.
+
+* Github also provides a [Markdown Reference](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).
